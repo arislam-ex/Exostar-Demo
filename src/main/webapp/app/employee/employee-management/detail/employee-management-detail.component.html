@@ -9,7 +9,7 @@
       <dl class="row-md jh-entity-details">
         <dt><span>Employee Id</span></dt>
         <dd>
-          <span>{{ employee.employeeCode }}</span>
+          <span>{{ employee.login }}</span>
           <span *ngIf="employee.activated" class="badge bg-success">Activated</span>
           <span *ngIf="!employee.activated" class="badge bg-danger">Deactivated</span>
         </dd>
