@@ -1,0 +1,51 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="employee">
+      <h2>
+        <span>Employee</span> [<strong>{{ employee.login }}</strong
+        >]
+      </h2>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>Employee Id</span></dt>
+        <dd>
+          <span>{{ employee.employeeCode }}</span>
+          <span *ngIf="employee.activated" class="badge bg-success">Activated</span>
+          <span *ngIf="!employee.activated" class="badge bg-danger">Deactivated</span>
+        </dd>
+
+        <dt><span>First name</span></dt>
+        <dd>{{ employee.firstName }}</dd>
+
+        <dt><span>Last name</span></dt>
+        <dd>{{ employee.lastName }}</dd>
+
+        <dt><span>Email</span></dt>
+        <dd>{{ employee.email }}</dd>
+
+        <dt><span>Created by</span></dt>
+        <dd>{{ employee.createdBy }}</dd>
+
+        <dt><span>Created date</span></dt>
+        <dd>{{ employee.createdDate | date: 'dd/MM/yy HH:mm' }}</dd>
+
+        <dt><span>Modified by</span></dt>
+        <dd>{{ employee.lastModifiedBy }}</dd>
+
+        <dt><span>Modified date</span></dt>
+        <dd>{{ employee.lastModifiedDate | date: 'dd/MM/yy HH:mm' }}</dd>
+
+        <dt><span>Profiles</span></dt>
+        <dd>
+          <ul class="list-unstyled">
+            <li *ngFor="let authority of employee.authorities">
+              <span class="badge bg-info">{{ authority }}</span>
+            </li>
+          </ul>
+        </dd>
+      </dl>
+
+      <button type="submit" routerLink="../../" class="btn btn-info"><fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span></button>
+    </div>
+  </div>
+</div>

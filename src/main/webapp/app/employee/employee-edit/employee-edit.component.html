@@ -1,0 +1,183 @@
+<div class="card" *ngIf="selectedEmployee">
+  <div class="card-header">
+    {{ pageTitle }}
+  </div>
+  <div class="card-body">
+    <form novalidate (ngSubmit)="saveEmployee()" [formGroup]="employeeForm">
+      <fieldset>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="employeeNameId">Employee Name</label>
+
+          <div class="col-md-9">
+            <input
+              [ngClass]="{ 'is-invalid': displayMessage.firstName }"
+              class="form-control"
+              id="employeeNameId"
+              type="text"
+              placeholder="Name (required)"
+              formControlName="firstName"
+              (blur)="blur()"
+            />
+            <span class="invalid-feedback" *ngIf="displayMessage.firstName">
+              {{ displayMessage.firstName }}{{ displayMessage.lastName }}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="employeeCodeId">Employee Id</label>
+
+          <div class="col-md-9">
+            <input
+              [ngClass]="{ 'is-invalid': displayMessage.employeeCode }"
+              class="form-control"
+              id="employeeCodeId"
+              type="text"
+              placeholder="Code (required)"
+              formControlName="employeeCode"
+              (blur)="blur()"
+            />
+            <span class="invalid-feedback" *ngIf="displayMessage.employeeCode">
+              {{ displayMessage.employeeCode }}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="employeeEmail">Email</label>
+
+          <div class="col-md-9">
+            <input
+              [ngClass]="{ 'is-invalid': displayMessage.email }"
+              class="form-control"
+              id="employeeEmail"
+              type="text"
+              placeholder="Email (required)"
+              formControlName="email"
+              (blur)="blur()"
+            />
+            <span class="invalid-feedback" *ngIf="displayMessage.employeeCode">
+              {{ displayMessage.email }}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="employeeCity">City</label>
+
+          <div class="col-md-9">
+            <input
+              [ngClass]="{ 'is-invalid': displayMessage.city }"
+              class="form-control"
+              id="employeeCity"
+              type="text"
+              placeholder="City (required)"
+              formControlName="city"
+              (blur)="blur()"
+            />
+            <span class="invalid-feedback" *ngIf="displayMessage.employeeCode">
+              {{ displayMessage.city }}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="employeeState">State</label>
+
+          <div class="col-md-9">
+            <input
+              [ngClass]="{ 'is-invalid': displayMessage.state }"
+              class="form-control"
+              id="employeeState"
+              type="text"
+              placeholder="State (required)"
+              formControlName="state"
+              (blur)="blur()"
+            />
+            <span class="invalid-feedback" *ngIf="displayMessage.employeeCode">
+              {{ displayMessage.state }}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="employeeZip">Zip</label>
+
+          <div class="col-md-9">
+            <input
+              [ngClass]="{ 'is-invalid': displayMessage.zip }"
+              class="form-control"
+              id="employeeZip"
+              type="text"
+              placeholder="Zip (required)"
+              formControlName="zip"
+              (blur)="blur()"
+            />
+            <span class="invalid-feedback" *ngIf="displayMessage.employeeCode">
+              {{ displayMessage.zip }}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="starRatingId">Star Rating (1-5)</label>
+
+          <div class="col-md-9">
+            <input
+              [ngClass]="{ 'is-invalid': displayMessage.starRating }"
+              class="form-control"
+              id="starRatingId"
+              type="text"
+              placeholder="Rating"
+              formControlName="starRating"
+            />
+            <span class="invalid-feedback" *ngIf="displayMessage.starRating">
+              {{ displayMessage.starRating }}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="descriptionId">Address</label>
+
+          <div class="col-md-9">
+            <textarea
+              [ngClass]="{ 'is-invalid': displayMessage.address }"
+              class="form-control"
+              id="descriptionId"
+              placeholder="Description"
+              rows="3"
+              formControlName="address"
+            >
+            </textarea>
+            <span class="invalid-feedback" *ngIf="displayMessage.description">
+              {{ displayMessage.address }}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-10 col-md-offset-2">
+            <span>
+              <button
+                class="btn btn-primary"
+                type="submit"
+                style="width: 80px; margin-right: 10px"
+                [disabled]="!employeeForm.valid || !employeeForm.dirty"
+              >
+                Save
+              </button>
+            </span>
+            <span>
+              <button class="btn btn-light" type="button" style="width: 80px; margin-right: 10px" (click)="cancelEdit()">Cancel</button>
+            </span>
+            <span>
+              <button class="btn btn-light" type="button" style="width: 80px" (click)="deleteEmployee()">Delete</button>
+            </span>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+<div *ngIf="errorMessage" class="alert alert-danger">Error: {{ errorMessage }}</div>

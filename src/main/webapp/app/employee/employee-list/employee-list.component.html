@@ -1,0 +1,34 @@
+<div class="card">
+  <div class="card-header">
+    {{ pageTitle }}
+  </div>
+
+  <div class="card-body" *ngIf="employees">
+    <div class="list-group">
+      <button
+        class="list-group-item list-group-item-action rounded-0"
+        *ngFor="let employee of employees"
+        [ngClass]="{ active: employee?.id === selectedEmployee?.id }"
+        (click)="employeeSelected(employee)"
+      >
+        {{ employee.firstName }} {{ employee.lastName }}
+        <ng-container *ngIf="displayCode"> ({{ employee.employeeCode }}) </ng-container>
+      </button>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <div class="row">
+      <div class="form-check col-md-7">
+        <label>
+          <input class="form-check-input" type="checkbox" (change)="checkChanged()" [checked]="displayCode" />
+          Display Employee Id
+        </label>
+      </div>
+      <div class="col-md-4 text-right">
+        <button class="btn btn-primary" (click)="newEmployee()">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="errorMessage" class="alert alert-danger">Error: {{ errorMessage }}</div>
