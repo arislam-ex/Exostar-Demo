@@ -40,10 +40,6 @@ export class EmployeeManagementComponent implements OnInit {
     this.handleNavigation();
   }
 
-  setActive(employee: Employee, isActivated: boolean): void {
-    this.employeeService.update({ ...employee, activated: isActivated }).subscribe(() => this.loadAll());
-  }
-
   trackIdentity(_index: number, item: Employee): number {
     return item.id!;
   }

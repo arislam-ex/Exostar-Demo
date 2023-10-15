@@ -1,5 +1,11 @@
 export interface IEmployee {
   id: number | null;
+  employeeCode?: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  zip?: string | null;
+  starRating?: string | null;
   login?: string;
   firstName?: string | null;
   lastName?: string | null;
@@ -16,6 +22,12 @@ export interface IEmployee {
 export class Employee implements IEmployee {
   constructor(
     public id: number | null,
+    public employeeCode?: string,
+    public address?: string,
+    public city?: string,
+    public state?: string,
+    public zip?: string,
+    public starRating?: string,
     public login?: string,
     public firstName?: string | null,
     public lastName?: string | null,

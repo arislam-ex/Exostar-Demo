@@ -1,2 +1,0 @@
-John,Doe,JD101,1004 Test Ln, Austin, TX,78677,test1@gmail.com,4
-Jane,Doe,JD102,1005 Test Ln, Austin, TX,78677,test2@gmail.com,4
