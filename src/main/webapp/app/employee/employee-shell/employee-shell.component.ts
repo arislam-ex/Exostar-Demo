@@ -5,9 +5,10 @@ import { Employee } from '../employee';
 
 /* NgRx */
 import { Store } from '@ngrx/store';
-import { State, getShowEmployeeCode, getCurrentEmployee, getEmployees, getError } from '../state';
+import { State, getShowEmployeeCode, getCurrentEmployee, getEmployees, getError, getFiles } from '../state';
 
 import { EmployeePageActions } from '../state/actions';
+import { EmployeeFile } from '../employee.file';
 
 @Component({
   templateUrl: './employee-shell.component.html',
@@ -16,6 +17,7 @@ export class EmployeeShellComponent implements OnInit {
   displayCode$: Observable<boolean>;
   selectedEmployee$: Observable<Employee>;
   employees$: Observable<Employee[]>;
+  files$: Observable<any[]>;
   errorMessage$: Observable<string>;
 
   constructor(private store: Store<State>) {}
@@ -24,6 +26,8 @@ export class EmployeeShellComponent implements OnInit {
     // Do NOT subscribe here because it uses an async pipe
     // This gets the initial values until the load is complete.
     this.employees$ = this.store.select(getEmployees);
+
+    this.files$ = this.store.select(getFiles);
 
     // Do NOT subscribe here because it uses an async pipe
     this.errorMessage$ = this.store.select(getError);
@@ -65,6 +69,7 @@ export class EmployeeShellComponent implements OnInit {
   }
   updateEmployeeList(fileName: string): void {
     this.store.dispatch(EmployeePageActions.uploadEmployeeList({ fileName }));
+    this.store.dispatch(EmployeePageActions.updateFileList());
   }
 
   deleteFile(fileName: string): void {

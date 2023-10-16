@@ -1,7 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EmployeeUploadService } from './employee-upload.service';
+import { EmployeePageActions } from '../state/actions';
+import { Store } from '@ngrx/store';
+import { State } from '../state';
+import { EmployeeFile } from '../employee.file';
 
 @Component({
   selector: 'jhi-employee-upload',
@@ -17,13 +21,15 @@ export class EmployeeUploadComponent implements OnInit {
   fileInfos?: Observable<any>;
 
   ascending!: boolean;
+  @Input() files: any[];
   @Output() fileWasUploaded = new EventEmitter<string>();
   @Output() fileWasDeleted = new EventEmitter<string>();
 
-  constructor(private uploadService: EmployeeUploadService) {}
+  constructor(private uploadService: EmployeeUploadService, private store: Store<State>) {}
 
   ngOnInit(): void {
     this.fileInfos = this.uploadService.getFiles();
+    this.store.dispatch(EmployeePageActions.updateFileList());
   }
 
   selectFile(event: any): void {

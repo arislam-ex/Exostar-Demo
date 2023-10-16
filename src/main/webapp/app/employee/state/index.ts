@@ -38,4 +38,6 @@ export const getCurrentEmployee = createSelector(getEmployeeFeatureState, getCur
 
 export const getEmployees = createSelector(getEmployeeFeatureState, state => state.employees);
 
+export const getFiles = createSelector(getEmployeeFeatureState, state => state.files);
+
 export const getError = createSelector(getEmployeeFeatureState, state => state.error);

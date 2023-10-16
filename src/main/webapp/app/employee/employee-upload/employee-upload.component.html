@@ -41,7 +41,7 @@
         </tr>
       </thead>
       <tbody *ngIf="fileInfos">
-        <tr *ngFor="let file of fileInfos | async">
+        <tr *ngFor="let file of files">
           <td>
             <a href="{{ file.url }}">{{ file.name }}</a>
           </td>

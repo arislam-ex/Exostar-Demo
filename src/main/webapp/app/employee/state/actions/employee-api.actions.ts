@@ -1,3 +1,4 @@
+import { EmployeeFile } from 'app/employee/employee.file';
 import { Employee } from '../../employee';
 
 /* NgRx */
@@ -14,6 +15,10 @@ export const updateEmployeeFailure = createAction('[Employee API] Update Employe
 export const uploadEmployeeListSuccess = createAction('[Employee API] Upload Employee List Success', props<{ employees: Employee[] }>());
 
 export const uploadEmployeeListFailure = createAction('[Employee API] Upload Employee List Fail', props<{ error: string }>());
+
+export const updateFileListSuccess = createAction('[Employee API] Update File List Success', props<{ files: any[] }>());
+
+export const updateFileListFailure = createAction('[Employee API] Update File List Fail', props<{ error: string }>());
 
 export const deleteFileSuccess = createAction('[Employee API] Delete File Success', props<{ file: File }>());
 

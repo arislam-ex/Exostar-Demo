@@ -17,6 +17,8 @@ export const updateEmployee = createAction('[Employee Page] Update Employee', pr
 
 export const uploadEmployeeList = createAction('[Employee Page] Upload Employee List', props<{ fileName: string }>());
 
+export const updateFileList = createAction('[Employee Page] Update File List');
+
 export const deleteFile = createAction('[Employee Page] Delete File', props<{ fileName: string }>());
 
 export const createEmployee = createAction('[Employee Page] Create Employee', props<{ employee: Employee }>());

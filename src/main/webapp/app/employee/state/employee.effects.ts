@@ -52,6 +52,18 @@ export class EmployeeEffects {
     );
   });
 
+  updateFileList$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EmployeePageActions.updateFileList),
+      concatMap(action =>
+        this.employeeService.updateFileList().pipe(
+          map(files => EmployeeApiActions.updateFileListSuccess({ files })),
+          catchError(error => of(EmployeeApiActions.uploadEmployeeListFailure({ error })))
+        )
+      )
+    );
+  });
+
   deleteFile$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EmployeePageActions.deleteFile),

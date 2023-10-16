@@ -6,6 +6,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 
 import { Employee } from './employee';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
+import { EmployeeFile } from './employee.file';
 
 @Injectable({
   providedIn: 'root',
@@ -47,6 +48,12 @@ export class EmployeeService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const url = `${this.employeesUrl}/${fileName ? fileName : 'all'}`;
     return this.http.get<Employee[]>(url, { headers }).pipe(catchError(this.handleError));
+  }
+
+  updateFileList(): Observable<any[]> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const url = `${this.employeesUrl}/files`;
+    return this.http.get<any[]>(url, { headers }).pipe(catchError(this.handleError));
   }
 
   private handleError(err: any): Observable<never> {

@@ -3,6 +3,7 @@ import { Employee } from '../employee';
 /* NgRx */
 import { createReducer, on } from '@ngrx/store';
 import { EmployeeApiActions, EmployeePageActions } from './actions';
+import { EmployeeFile } from '../employee.file';
 
 // State for this feature (Employee)
 export interface EmployeeState {
@@ -10,6 +11,7 @@ export interface EmployeeState {
   currentEmployeeId: number | null;
   employees: Employee[];
   error: string;
+  files: any[];
 }
 
 const initialState: EmployeeState = {
@@ -17,6 +19,7 @@ const initialState: EmployeeState = {
   currentEmployeeId: null,
   employees: [],
   error: '',
+  files: [],
 };
 
 export const employeeReducer = createReducer<EmployeeState>(
@@ -80,6 +83,14 @@ export const employeeReducer = createReducer<EmployeeState>(
       ...state,
       employees: action.employees,
       currentEmployeeId: action.employees[0].id,
+      error: '',
+    })
+  ),
+  on(
+    EmployeeApiActions.updateFileListSuccess,
+    (state, action): EmployeeState => ({
+      ...state,
+      files: action.files,
       error: '',
     })
   ),
